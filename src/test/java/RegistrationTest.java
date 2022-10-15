@@ -1,5 +1,5 @@
-import data.Account;
-import data.AccountManager;
+import tools.data.Account;
+import tools.AccountManager;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;

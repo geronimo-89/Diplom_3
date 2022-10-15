@@ -1,11 +1,12 @@
 package setup;
 
-import data.Account;
-import data.AccountManager;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import tools.data.Account;
+import tools.AccountManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobject.*;
+import tools.WebDriverManager;
+
+import java.util.concurrent.TimeUnit;
 
 //all tests extend this
 public class SetUp {
@@ -18,13 +19,12 @@ public class SetUp {
     public static final String HOME_PAGE_LINK = "https://stellarburgers.nomoreparties.site/";
 
     public void chromeDriverSetUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver = WebDriverManager.getBrowser();
     }
 
     public void openHomePage() {
         driver.get(HOME_PAGE_LINK);
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public void setUpObjects() {

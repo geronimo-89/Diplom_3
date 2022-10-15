@@ -10,8 +10,6 @@ public class HomePage extends BasicPages {
         super(driver);
     }
 
-    @FindBy(className = "Modal_modal__P3_V5")
-    private WebElement loadingFinished;
     @FindBy(linkText = "Личный Кабинет")
     private WebElement accountButton;
     @FindBy(xpath = ".//button[text()='Войти в аккаунт']")
@@ -31,11 +29,6 @@ public class HomePage extends BasicPages {
     @FindBy(xpath = ".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']")
     private WebElement fillingsTabActive;
 
-
-    public HomePage waitForPage() {
-        waitForElement(loadingFinished);
-        return this;
-    }
 
     public HomePage waitForLogin() {
         waitForElement(accountLoginButton);
