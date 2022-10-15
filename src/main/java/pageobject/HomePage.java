@@ -1,5 +1,6 @@
 package pageobject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,70 +30,74 @@ public class HomePage extends BasicPages {
     @FindBy(xpath = ".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']")
     private WebElement fillingsTabActive;
 
-
-    public HomePage waitForLogin() {
-        waitForElement(accountLoginButton);
-        return this;
-    }
-
-    public HomePage waitForAccount() {
+    @Step("Ожидание загрузки страницы")
+    public HomePage waitForPage() {
         waitForElement(accountButton);
         return this;
     }
 
+    @Step("Переход к разделу Булки")
     public HomePage selectBuns() {
         waitForElement(bunsTab);
         bunsTab.click();
         return this;
     }
 
+    @Step("Переход к разделу Соусы")
     public HomePage selectSauces() {
         waitForElement(saucesTab);
         saucesTab.click();
         return this;
     }
 
+    @Step("Переход к разделу Начинки")
     public HomePage selectFillings() {
         waitForElement(fillingsTab);
         fillingsTab.click();
         return this;
     }
 
+    @Step("Булки - активная вкладка")
     public boolean bunsTabActive() {
         waitForElement(bunsTabActive);
         return bunsTabActive.isDisplayed();
     }
 
+    @Step("Соусы - активная вкладка")
     public boolean saucesTabActive() {
         waitForElement(saucesTabActive);
         return saucesTabActive.isDisplayed();
     }
 
+    @Step("Начинки - активная вкладка")
     public boolean fillingsTabActive() {
         waitForElement(fillingsTabActive);
         return fillingsTabActive.isDisplayed();
     }
 
+    @Step("Отображается кнопка Оформить заказ, т.е. пользователь успешно залогинен")
     public boolean orderButtonAvailable() {
         waitForElement(placeOrderButton);
         return placeOrderButton.isDisplayed();
     }
 
-
+    @Step("Переход в Личный кабинет")
     public ProfilePage goToAccountPage() {
-        waitForAccount();
+        waitForElement(accountButton);
         accountButton.click();
         return new ProfilePage(driver);
     }
 
+    @Step("Переход к авторизации через кнопку Личный кабинет")
     public LoginPage goToLoginPage1() {
-        waitForAccount();
+        waitForElement(accountButton);
         accountButton.click();
         return new LoginPage(driver);
     }
 
+    @Step("Переход к авторизации через кнопку Войти в аккаунт")
     public LoginPage goToLoginPage2() {
-        waitForLogin();
+        waitForElement(accountLoginButton);
         accountLoginButton.click();
         return new LoginPage(driver);
     }

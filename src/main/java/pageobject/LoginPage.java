@@ -1,5 +1,6 @@
 package pageobject;
 
+import io.qameta.allure.Step;
 import tools.data.Account;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,28 +22,33 @@ public class LoginPage extends BasicPages {
     @FindBy(linkText = "Восстановить пароль")
     private WebElement recoverPasswordLink;
 
+    @Step("Ожидание загрузки страницы")
     public LoginPage waitForPage() {
         waitForElement(logInButton);
         return this;
     }
 
+    @Step("Отображается страница для логина пользователя")
     public boolean loginPageDisplayed() {
         waitForElement(logInButton);
         return logInButton.isDisplayed();
     }
 
+    @Step("Ввод в поле email")
     public LoginPage enterEmail(String email) {
         emailInputField.click();
         emailInputField.sendKeys(email);
         return this;
     }
 
+    @Step("Ввод в поле пароля")
     public LoginPage enterPassword(String password) {
         passwordInputField.click();
         passwordInputField.sendKeys(password);
         return this;
     }
 
+    @Step("Вход в аккаунт по email и паролю")
     public HomePage logIntoAccount(String email, String password) {
         waitForPage();
         enterEmail(email);
@@ -51,6 +57,7 @@ public class LoginPage extends BasicPages {
         return new HomePage(driver);
     }
 
+    @Step("Вход в аккаунт с объектом данных аккаунта")
     public HomePage logIntoAccount(Account accountGenerator) {
         waitForPage();
         enterEmail(accountGenerator.getEmail());
@@ -59,12 +66,14 @@ public class LoginPage extends BasicPages {
         return new HomePage(driver);
     }
 
+    @Step("Переход на страницу регистрации")
     public RegisterPage goToRegistration() {
         waitForPage();
         registerButton.click();
         return new RegisterPage(driver);
     }
 
+    @Step("Переход на страницу восстановления пароля")
     public ForgotPasswordPage goToPasswordRecovery() {
         waitForPage();
         recoverPasswordLink.click();

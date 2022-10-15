@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import pageobject.*;
 import tools.WebDriverManager;
 
-import java.util.concurrent.TimeUnit;
-
 //all tests extend this
 public class SetUp {
 
@@ -54,10 +52,10 @@ public class SetUp {
 
     public void logIntoAccount() {
         homePage
-                .waitForLogin()
+                .waitForPage()
                 .goToLoginPage1()
                 .logIntoAccount(account)
-                .waitForAccount();
+                .waitForPage();
     }
 
     public void closeDriver() {
