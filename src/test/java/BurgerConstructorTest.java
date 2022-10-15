@@ -20,6 +20,7 @@ public class BurgerConstructorTest extends SetUp {
         assertTrue(
                 homePage
                         .scrollDown()
+                        .homePageWait()
                         .selectBuns()
                         .bunsTabActive()
         );
