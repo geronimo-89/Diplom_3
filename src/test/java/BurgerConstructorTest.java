@@ -19,7 +19,7 @@ public class BurgerConstructorTest extends SetUp {
     public void shouldSwitchToBunsTab() {
         assertTrue(
                 homePage
-                        .selectFillings()
+                        .scrollDown()
                         .selectBuns()
                         .bunsTabActive()
         );
@@ -36,7 +36,7 @@ public class BurgerConstructorTest extends SetUp {
     }
 
     @Test
-    @DisplayName("Переход к разделу Булки")
+    @DisplayName("Переход к разделу Начинки")
     public void shouldSwitchToFillingsTab() {
         assertTrue(
                 homePage

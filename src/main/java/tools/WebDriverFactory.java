@@ -3,19 +3,18 @@ package tools;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class WebDriverManager {
+public class WebDriverFactory {
 
-    static String browserName;
-    public static String getBrowserName() {
+
+    public static WebDriver getBrowser() {
+        String browserName;
         try {
             browserName = System.getProperty("browser");
         } catch (RuntimeException e) {
-            return "chrome";
+            e.printStackTrace();
+            browserName = "chrome";
         }
-        return browserName;
-    }
-    public static WebDriver getBrowser() {
-        browserName = getBrowserName();
+        if (browserName == null) browserName = "chrome";
         String path = System.getProperty("user.dir");
         switch (browserName) {
             case "chrome": {

@@ -1,11 +1,14 @@
 package pageobject;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasicPages {
+
+    private JavascriptExecutor js;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -29,10 +32,23 @@ public class HomePage extends BasicPages {
     private WebElement saucesTabActive;
     @FindBy(xpath = ".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']")
     private WebElement fillingsTabActive;
+    @FindBy(xpath = "//div[@class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/ul[last()]/a[last()]")
+    private WebElement lastIngredient;
 
     @Step("Ожидание загрузки страницы")
     public HomePage waitForPage() {
         waitForElement(accountButton);
+        return this;
+    }
+    @Step("Ожидание")
+    public HomePage homePageWait() {
+        wait(5);
+        return this;
+    }
+
+    public HomePage scrollDown() {
+        js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", lastIngredient);
         return this;
     }
 

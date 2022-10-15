@@ -4,7 +4,7 @@ import tools.data.Account;
 import tools.AccountManager;
 import org.openqa.selenium.WebDriver;
 import pageobject.*;
-import tools.WebDriverManager;
+import tools.WebDriverFactory;
 
 //all tests extend this
 public class SetUp {
@@ -17,12 +17,11 @@ public class SetUp {
     public static final String HOME_PAGE_LINK = "https://stellarburgers.nomoreparties.site/";
 
     public void chromeDriverSetUp() {
-        driver = WebDriverManager.getBrowser();
+        driver = WebDriverFactory.getBrowser();
     }
 
     public void openHomePage() {
         driver.get(HOME_PAGE_LINK);
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public void setUpObjects() {
